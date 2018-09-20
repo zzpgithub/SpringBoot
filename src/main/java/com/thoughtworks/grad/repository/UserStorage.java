@@ -20,6 +20,10 @@ public class UserStorage {
         USERS.put(5, new User(5, "Jack User", contacts));
     }
 
+    public static void clear(int id){
+        USERS.get(id).getContacts().clear();
+    }
+
     public static Map<Integer, Contact> getUserContacts(int id){
         return USERS.get(id).getContacts();
     }
@@ -36,5 +40,9 @@ public class UserStorage {
     public static Contact saveUserContact(int id, Contact contact) {
         USERS.get(id).getContacts().put(contact.getId(), contact);
         return contact;
+    }
+
+    public static void deleteUserContact(int id, int contactId) {
+        USERS.get(id).getContacts().remove(contactId);
     }
 }

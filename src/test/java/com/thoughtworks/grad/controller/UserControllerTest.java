@@ -2,14 +2,13 @@ package com.thoughtworks.grad.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.thoughtworks.grad.domain.Contact;
+import com.thoughtworks.grad.repository.UserStorage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
@@ -57,6 +56,14 @@ public class UserControllerTest {
                 .andExpect(jsonPath("$.gender").value("femal"))
                 .andExpect(jsonPath("$.name").value("Alin"))
                 .andExpect(jsonPath("$.phoneNumber").value("123-1234"));
+    }
+
+    @Test
+    void should_delete_contact() throws Exception {
+        UserStorage.clear(5);
+        Contact contact = new Contact(1, 25, "femal","Alin", "123-1234");
+        UserStorage.saveUserContact(5, contact);
+        mockMvc.perform(delete("/user/5/contact/1")).andExpect(status().isNoContent());
     }
 }
 

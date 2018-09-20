@@ -12,4 +12,6 @@ public interface UserRepository {
     Map<Integer, Contact> getUserContacts(int id);
 
     Contact updateUserContact(int id, Contact contact);
+
+    void deleteUserContact(int id, int contactId);
 }

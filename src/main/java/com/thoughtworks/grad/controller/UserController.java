@@ -30,4 +30,10 @@ public class UserController {
     public ResponseEntity<Contact> updateUserContact(@PathVariable int id, @RequestBody Contact contact){
         return new ResponseEntity<>(userRepository.updateUserContact(id, contact), HttpStatus.ACCEPTED);
     }
+
+    @DeleteMapping ("/user/{id}/contact/{contactId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteUserContact(@PathVariable int id, @PathVariable int contactId){
+        userRepository.deleteUserContact(id, contactId);
+    }
 }

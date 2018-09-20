@@ -9,6 +9,12 @@ import java.util.Collection;
 import java.util.Map;
 
 public class UserRepositoryImpl implements UserRepository {
+
+    @Override
+    public Contact saveUserContact(int id, Contact contact) {
+        return UserStorage.saveUserContact(id, contact);
+    }
+
     @Override
     public Map<Integer, Contact> getUserContacts(int id) {
         return UserStorage.getUserContacts(id);

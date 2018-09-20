@@ -32,4 +32,9 @@ public class UserStorage {
         originalContact.setPhoneNumber(contact.getPhoneNumber());
         return contact;
     }
+
+    public static Contact saveUserContact(int id, Contact contact) {
+        USERS.get(id).getContacts().put(contact.getId(), contact);
+        return contact;
+    }
 }

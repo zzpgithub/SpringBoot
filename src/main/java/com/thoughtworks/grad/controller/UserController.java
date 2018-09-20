@@ -16,6 +16,11 @@ public class UserController {
 
     private UserRepository userRepository = new UserRepositoryImpl();
 
+    @PostMapping("/user/{id}/contact")
+    public ResponseEntity<Contact> saveUserContact(@PathVariable int id, @RequestBody Contact contact) {
+        return new ResponseEntity<>(userRepository.saveUserContact(id, contact), HttpStatus.CREATED);
+    }
+
     @GetMapping("/user/{id}")
     public Map<Integer, Contact> getUserContacts(@PathVariable int id){
         return userRepository.getUserContacts(id);

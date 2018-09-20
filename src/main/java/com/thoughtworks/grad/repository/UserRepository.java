@@ -7,6 +7,8 @@ import java.util.Collection;
 import java.util.Map;
 
 public interface UserRepository {
+    Contact saveUserContact(int id, Contact contact);
+
     Map<Integer, Contact> getUserContacts(int id);
 
     Contact updateUserContact(int id, Contact contact);

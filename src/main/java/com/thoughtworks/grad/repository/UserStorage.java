@@ -20,11 +20,11 @@ public class UserStorage {
         USERS.put(5, new User(5, "Jack User", contacts));
     }
 
-    public static void clear(int id){
+    public static void clear(int id) {
         USERS.get(id).getContacts().clear();
     }
 
-    public static Map<Integer, Contact> getUserContacts(int id){
+    public static Map<Integer, Contact> getUserContacts(int id) {
         return USERS.get(id).getContacts();
     }
 
@@ -45,4 +45,18 @@ public class UserStorage {
     public static void deleteUserContact(int id, int contactId) {
         USERS.get(id).getContacts().remove(contactId);
     }
+
+    public static Contact getUserContactByName(String userName, String contactName) {
+        for(Integer key : USERS.keySet()){
+            if (USERS.get(key).getName().equals(userName)) {
+                for(Integer contactKey : USERS.get(key).getContacts().keySet()){
+                    if(USERS.get(key).getContacts().get(contactKey).getName().equals(contactName)){
+                        return USERS.get(key).getContacts().get(contactKey);
+                    }
+                }
+            }
+        }
+        return null;
+    }
 }
+

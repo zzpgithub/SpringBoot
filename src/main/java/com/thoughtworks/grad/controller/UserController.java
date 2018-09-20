@@ -8,7 +8,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collection;
 import java.util.Map;
 
 @RestController
@@ -35,5 +34,10 @@ public class UserController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteUserContact(@PathVariable int id, @PathVariable int contactId){
         userRepository.deleteUserContact(id, contactId);
+    }
+
+    @GetMapping("/user/contact")
+    public Contact getUserContact(@RequestParam String userName, @RequestParam String contactName) {
+        return userRepository.getUserContactByName(userName, contactName);
     }
 }

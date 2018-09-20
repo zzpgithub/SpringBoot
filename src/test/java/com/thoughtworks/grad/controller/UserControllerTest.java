@@ -65,5 +65,16 @@ public class UserControllerTest {
         UserStorage.saveUserContact(5, contact);
         mockMvc.perform(delete("/user/5/contact/1")).andExpect(status().isNoContent());
     }
+
+    @Test
+    void should_get_contact_by_user_name() throws Exception {
+        mockMvc.perform(get("/user/contact").param("userName", "Jack User")
+        .param("contactName", "Jack ContactOne"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.age").value(20))
+                .andExpect(jsonPath("$.gender").value("male"))
+                .andExpect(jsonPath("$.name").value("Jack ContactOne"))
+                .andExpect(jsonPath("$.phoneNumber").value("111-1111"));
+    }
 }
 

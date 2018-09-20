@@ -19,6 +19,7 @@ public class UserControllerTest {
     @BeforeEach
     void setUp(){
         mockMvc = standaloneSetup(new UserController()).build();
+        //UserStorage.clear(5);
     }
 
 
@@ -38,14 +39,21 @@ public class UserControllerTest {
 
     @Test
     void should_get_contacts_of_user() throws Exception {
+        Contact contact = new Contact(1, 25, "femal","Alin", "123-1234");
+        UserStorage.saveUserContact(5, contact);
         mockMvc.perform(get("/user/5"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("['1'].name").value("Jack ContactOne"))  ////返回contacts对象
-                .andExpect(jsonPath("['2'].name").value("Jack ContactTwo"));
+                .andExpect(jsonPath("['1'].name").value("Alin"))
+                .andExpect(jsonPath("['1'].id").value(1))
+                .andExpect(jsonPath("['1'].gender").value("femal"))
+                .andExpect(jsonPath("['1'].phoneNumber").value("123-1234"));  //map
     }
 
     @Test
     void should_update_user_contact() throws Exception {
+        UserStorage.clear(5);
+        Contact originalContact = new Contact(1, 20, "male","Ti", "333-3333");
+        UserStorage.saveUserContact(5, originalContact);
         Contact contact = new Contact(1, 25, "femal","Alin", "123-1234");
         mockMvc.perform(put("/user/5/contact")
                 .contentType(MediaType.APPLICATION_JSON_UTF8)

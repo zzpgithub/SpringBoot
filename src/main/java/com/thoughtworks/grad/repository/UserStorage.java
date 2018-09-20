@@ -3,7 +3,7 @@ package com.thoughtworks.grad.repository;
 import com.thoughtworks.grad.domain.Contact;
 import com.thoughtworks.grad.domain.User;
 
-import java.util.Collection;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,8 +20,14 @@ public class UserStorage {
         USERS.put(5, new User(5, "Jack User", contacts));
     }
 
-    public static void clear(int id) {
-        USERS.get(id).getContacts().clear();
+    public static void clear() {
+        USERS.clear();
+    }
+
+    public static void addUser(User... user) {
+        Arrays.stream(user).forEach(person -> {
+            USERS.put(person.getId(), person);
+        });
     }
 
     public static Map<Integer, Contact> getUserContacts(int id) {

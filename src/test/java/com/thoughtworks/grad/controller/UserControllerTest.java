@@ -35,9 +35,12 @@ public class UserControllerTest {
         mockMvc.perform(put("/user/5/contact")
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
                 .content(new ObjectMapper().writeValueAsString(contact)))
-                .andExpect(status().isAccepted());
-//                .andExpect(jsonPath("['contacts[1]'].id").value(1))  ////返回user
-//                .andExpect(jsonPath("$.contacts[0].age").value(25));
+                .andExpect(status().isAccepted())
+                .andExpect(jsonPath("$.id").value(1))  ////返回contact
+                .andExpect(jsonPath("$.age").value(25))
+                .andExpect(jsonPath("$.gender").value("femal"))
+                .andExpect(jsonPath("$.name").value("Alin"))
+                .andExpect(jsonPath("$.phoneNumber").value("123-1234"));
     }
 }
 

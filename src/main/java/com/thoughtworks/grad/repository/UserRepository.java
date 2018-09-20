@@ -9,5 +9,5 @@ import java.util.Map;
 public interface UserRepository {
     Map<Integer, Contact> getUserContacts(int id);
 
-    User updateUserContact(int id, Contact contact);
+    Contact updateUserContact(int id, Contact contact);
 }

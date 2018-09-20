@@ -22,7 +22,7 @@ public class UserController {
     }
 
     @PutMapping ("/user/{id}/contact")
-    public ResponseEntity<User> updateUserContact(@PathVariable int id, @RequestBody Contact contact){
+    public ResponseEntity<Contact> updateUserContact(@PathVariable int id, @RequestBody Contact contact){
         return new ResponseEntity<>(userRepository.updateUserContact(id, contact), HttpStatus.ACCEPTED);
     }
 }

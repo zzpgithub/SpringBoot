@@ -24,12 +24,12 @@ public class UserStorage {
         return USERS.get(id).getContacts();
     }
 
-    public static User updateUserContact(int id, Contact contact) {
+    public static Contact updateUserContact(int id, Contact contact) {
         Contact originalContact = USERS.get(id).getContacts().get(contact.getId());
         originalContact.setAge(contact.getAge());
         originalContact.setName(contact.getName());
         originalContact.setGender(contact.getGender());
         originalContact.setPhoneNumber(contact.getPhoneNumber());
-        return USERS.get(id);
+        return contact;
     }
 }

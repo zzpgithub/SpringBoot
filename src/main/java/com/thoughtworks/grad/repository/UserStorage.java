@@ -10,6 +10,7 @@ import java.util.Map;
 public class UserStorage {
     private static final Map<Integer, User> USERS = new HashMap<>();
 
+    // TODO: 2018/9/21 user contact需要分开写， 两个storage
     static {
         Map<Integer, Contact> contacts = new HashMap<>();
         Contact contactOne = new Contact(1, 20, "male", "Jack ContactOne", "111-1111");

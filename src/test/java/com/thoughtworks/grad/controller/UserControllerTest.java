@@ -54,7 +54,8 @@ public class UserControllerTest {
         init();
         mockMvc.perform(get("/user/5"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("['1'].name").value("Jack ContactOne"))
+                .andExpect(jsonPath("$.1.name").value("Jack ContactOne"))  /////$.1.name  $.当前对象 1 key  ==得到对应value
+                .andExpect(jsonPath("['1'].name").value("Jack ContactOne")) ///直接按对象写
                 .andExpect(jsonPath("['1'].id").value(1))
                 .andExpect(jsonPath("['1'].gender").value("male"))
                 .andExpect(jsonPath("['1'].phoneNumber").value("111-1111"));  //map

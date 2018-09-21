@@ -12,7 +12,7 @@ import java.util.Map;
 
 @RestController
 public class UserController {
-
+    // TODO: 2018/9/21  api设计需要更改
     private UserRepository userRepository = new UserRepositoryImpl();
 
     @PostMapping("/user/{id}/contact")

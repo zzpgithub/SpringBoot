@@ -2,12 +2,22 @@ package com.thoughtworks.grad.domain;
 
 public class Contact {
     private int id;
+    private int userId;
     private int age;
     private String gender;
     private String name;
     private String phoneNumber;
 
     public Contact() {
+    }
+
+    public Contact(int id, int userId, int age, String gender, String name, String phoneNumber) {
+        this.id = id;
+        this.userId = userId;
+        this.age = age;
+        this.gender = gender;
+        this.name = name;
+        this.phoneNumber = phoneNumber;
     }
 
     public Contact(int id, int age, String gender, String name, String phoneNumber) {
@@ -56,5 +66,13 @@ public class Contact {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 }

@@ -5,16 +5,21 @@ import java.util.Map;
 public class User {
     private int id;
     private String name;
-    private Map<Integer, Contact> contacts;
+   // private Map<Integer, Contact> contacts;
 
     public User() {
     }
 
-    public User(int id, String name, Map<Integer, Contact> contacts) {
+    public User(int id, String name) {
         this.id = id;
         this.name = name;
-        this.contacts = contacts;
     }
+
+    //    public User(int id, String name, Map<Integer, Contact> contacts) {
+//        this.id = id;
+//        this.name = name;
+//        this.contacts = contacts;
+//    }
 
     public int getId() {
         return id;
@@ -32,11 +37,11 @@ public class User {
         this.name = name;
     }
 
-    public Map<Integer, Contact> getContacts() {
-        return contacts;
-    }
-
-    public void setContacts(Map<Integer, Contact> contacts) {
-        this.contacts = contacts;
-    }
+//    public Map<Integer, Contact> getContacts() {
+//        return contacts;
+//    }
+//
+//   // public void setContacts(Map<Integer, Contact> contacts) {
+//        this.contacts = contacts;
+//    }
 }

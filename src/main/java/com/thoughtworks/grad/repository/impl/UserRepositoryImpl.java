@@ -9,29 +9,39 @@ import java.util.Collection;
 import java.util.Map;
 
 public class UserRepositoryImpl implements UserRepository {
-
     @Override
-    public Contact saveUserContact(int id, Contact contact) {
-        return UserStorage.saveUserContact(id, contact);
+    public Collection<User> getUsers() {
+        return UserStorage.getUsers();
     }
 
     @Override
-    public Map<Integer, Contact> getUserContacts(int id) {
-        return UserStorage.getUserContacts(id);
+    public User findUserByName(String userName) {
+        User user = UserStorage.findUserByName(userName);
+        return user;
     }
 
-    @Override
-    public Contact updateUserContact(int id, Contact contact) {
-        return UserStorage.updateUserContact(id, contact);
-    }
-
-    @Override
-    public void deleteUserContact(int id, int contactId) {
-        UserStorage.deleteUserContact(id, contactId);
-    }
-
-    @Override
-    public Contact getUserContactByName(String userName, String contactName) {
-        return UserStorage.getUserContactByName(userName, contactName);
-    }
+    //    @Override
+//    public Contact saveUserContact(int id, Contact contact) {
+//        return UserStorage.saveUserContact(id, contact);
+//    }
+//
+//    @Override
+//    public Map<Integer, Contact> getUserContacts(int id) {
+//        return UserStorage.getUserContacts(id);
+//    }
+//
+//    @Override
+//    public Contact updateUserContact(int id, Contact contact) {
+//        return UserStorage.updateUserContact(id, contact);
+//    }
+//
+//    @Override
+//    public void deleteUserContact(int id, int contactId) {
+//        UserStorage.deleteUserContact(id, contactId);
+//    }
+//
+//    @Override
+//    public Contact getUserContactByName(String userName, String contactName) {
+//        return UserStorage.getUserContactByName(userName, contactName);
+//    }
 }

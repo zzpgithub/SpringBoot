@@ -1,11 +1,8 @@
 package com.thoughtworks.grad.domain;
 
-import java.util.Map;
-
 public class User {
     private int id;
     private String name;
-   // private Map<Integer, Contact> contacts;
 
     public User() {
     }
@@ -14,12 +11,6 @@ public class User {
         this.id = id;
         this.name = name;
     }
-
-    //    public User(int id, String name, Map<Integer, Contact> contacts) {
-//        this.id = id;
-//        this.name = name;
-//        this.contacts = contacts;
-//    }
 
     public int getId() {
         return id;
@@ -36,12 +27,4 @@ public class User {
     public void setName(String name) {
         this.name = name;
     }
-
-//    public Map<Integer, Contact> getContacts() {
-//        return contacts;
-//    }
-//
-//   // public void setContacts(Map<Integer, Contact> contacts) {
-//        this.contacts = contacts;
-//    }
 }

@@ -20,14 +20,6 @@ public class Contact {
         this.phoneNumber = phoneNumber;
     }
 
-    public Contact(int id, int age, String gender, String name, String phoneNumber) {
-        this.id = id;
-        this.age = age;
-        this.gender = gender;
-        this.name = name;
-        this.phoneNumber = phoneNumber;
-    }
-
     public int getId() {
         return id;
     }

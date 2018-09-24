@@ -2,16 +2,11 @@ package com.thoughtworks.grad.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.thoughtworks.grad.domain.Contact;
-import com.thoughtworks.grad.domain.User;
 import com.thoughtworks.grad.repository.ContactStorage;
-import com.thoughtworks.grad.repository.UserStorage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -26,20 +21,13 @@ public class UserControllerTest {
     @BeforeEach
     void setUp(){
         mockMvc = standaloneSetup(new UserController()).build();
-       // UserStorage.clear();
+        ContactStorage.clear();
+        ContactStorage.add(new Contact(1, 5, 20, "male", "personOne", "111-1111"),
+                           new Contact(2, 5, 21, "male", "personTwo", "222-2222"));
     }
-//
-//    void init(){
-//        Map<Integer, Contact> contacts = new HashMap<>();
-//        Contact contactOne = new Contact(1, 20, "male", "Jack ContactOne", "111-1111");
-//        contacts.put(1, contactOne);
-//        UserStorage.addUser(new User(5, "Jack User", contacts));
-//
-//    }
 
     @Test
     void should_create_contact_for_user() throws Exception {
-        //init();
         Contact contact = new Contact(3, 5, 25, "femal","Alin", "123-1234");
         int originalContactNumber = ContactStorage.getCONTACTS().size();
 
@@ -60,15 +48,6 @@ public class UserControllerTest {
 
     @Test
     void should_get_contacts_of_user() throws Exception {
-        //init();
-//        mockMvc.perform(get("/api/users/5/contacts"))
-//                .andExpect(status().isOk())
-//                .andExpect(jsonPath("$.1.name").value("Jack ContactOne"))  /////$.1.name  $.当前对象 1 key  ==得到对应value
-//                .andExpect(jsonPath("['1'].name").value("Jack ContactOne")) ///直接按对象写
-//                .andExpect(jsonPath("['1'].id").value(1))
-//                .andExpect(jsonPath("['1'].gender").value("male"))
-//                .andExpect(jsonPath("['1'].phoneNumber").value("111-1111"));  //map
-
         mockMvc.perform(get("/api/users/5/contacts"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(2)))
@@ -82,7 +61,6 @@ public class UserControllerTest {
 
     @Test
     void should_update_user_contact() throws Exception {
-        //init();
         Contact contact = new Contact(1, 5,25, "femal","Alin", "123-1234");
         mockMvc.perform(put("/api/users/5/contacts/1")
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
@@ -97,17 +75,12 @@ public class UserControllerTest {
 
     @Test
     void should_delete_contact() throws Exception {
-        //init();
-        //Contact contact = new Contact(1, 25, "femal","Alin", "123-1234");
-        //UserStorage.saveUserContact(5, contact);
         mockMvc.perform(delete("/api/users/5/contacts/1"))
                 .andExpect(status().isNoContent());
     }
 
     @Test
     void should_get_contact_by_user_name_and_contact_name() throws Exception {
-       //init();
-
         mockMvc.perform(get("/api/users/Jack/contacts/personOne"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(1))

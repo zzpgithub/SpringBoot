@@ -2,10 +2,7 @@ package com.thoughtworks.grad.repository;
 
 import com.thoughtworks.grad.domain.Contact;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class ContactStorage {
@@ -25,6 +22,9 @@ public class ContactStorage {
         return contact;
     }
 
+    public static void add(Contact... contacts) {
+        Arrays.stream(contacts).forEach(contact -> CONTACTS.put(contact.getId(), contact));
+    }
     public static Contact getContactByContactId(int id) {
         return CONTACTS.get(id);
     }
@@ -34,14 +34,6 @@ public class ContactStorage {
         return contact;
     }
 
-    //    public static Contact updateUserContact(int id, Contact contact) {
-//        Contact originalContact = USERS.get(id).getContacts().get(contact.getId());
-//        originalContact.setAge(contact.getAge());
-//        originalContact.setName(contact.getName());
-//        originalContact.setGender(contact.getGender());
-//        originalContact.setPhoneNumber(contact.getPhoneNumber());
-//        return contact;
-//    }
 
     public static Contact updateForUser(int userId, int contactId, Contact contact) {
         Contact originalContact = CONTACTS.get(contactId);
@@ -70,5 +62,9 @@ public class ContactStorage {
             }
         });
         return contactsResult[0];
+    }
+
+    public static void clear() {
+        CONTACTS.clear();
     }
 }
